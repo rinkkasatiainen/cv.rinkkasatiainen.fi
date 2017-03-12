@@ -38,6 +38,6 @@ class CV extends Component {
   }
 }
 
-const AppWrapper = connect(mapStateToProps, mapDispatchToProps)(CV);
+export const AppCreator = connect(mapStateToProps, mapDispatchToProps)(CV);
 
-export default AppWrapper;
+export default CV;

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import CV from './CV';
+import { AppCreator as CV} from './CV';
 import './index.css';
 
 import { Provider } from 'react-redux';
