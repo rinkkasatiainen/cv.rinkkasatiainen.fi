@@ -2,10 +2,12 @@ import React from 'react';
 
 
 class Header extends React.Component {
+
+
   render() {
     return(
       <header className="c-header">
-        <h1>Aki Salmi</h1>
+        <h1>{this.props.state.name}</h1>
       </header>
     ) ;
   }
