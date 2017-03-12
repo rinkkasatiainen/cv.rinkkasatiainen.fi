@@ -4,26 +4,40 @@ import './App.css';
 
 import Header from './components/Header';
 
-class CV extends Component {
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-  constructor(props) {
-    super(props);
-    this.state = {name: 'Aki Salmi'};
+import * as actionCreators from './actions/actionCreators';
+
+function mapStateToProps(state) {
+  return {
+    name: state.name,
   }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(actionCreators, dispatch);
+}
+
+
+
+class CV extends Component {
 
   componentWillMount(){
     const {onInitialize} = {...this.props}
 
-    //    onInitialize()
+    onInitialize()
   }
 
   render() {
     return (
       <div className="App">
-        <Header state={this.state} />
+        <Header {...this.props} />
       </div>
     );
   }
 }
 
-export default CV;
+const AppWrapper = connect(mapStateToProps, mapDispatchToProps)(CV);
+
+export default AppWrapper;
