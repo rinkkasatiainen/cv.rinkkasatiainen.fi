@@ -9,7 +9,9 @@ export const defaultConfig = {
 export default class Fetch{
 
   static doCall(url, config = {...defaultConfig, method: 'GET'}) {
-    console.log ( 'haha' )
-    return fetch( url  ).then(resp => resp.json() )
+    return fetch( url )
+      .then( resp  => resp.json() )
+      .then( response => ( {response} ))
+      .catch( error => ({ error }))
   }
 }

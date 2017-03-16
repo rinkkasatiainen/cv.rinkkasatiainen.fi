@@ -22,7 +22,7 @@ describe('LinksReducer', () => {
     const initialState = []
     const action = {
       type: 'BASIC_DATA_RETRIEVED',
-      payload: {data : { me : { links : [ {'foo' : 'http://foo.bar.com'}, {'bar': 'http://bar.foo.com' }]}}}
+      payload:  { me : { links : [ {'foo' : 'http://foo.bar.com'}, {'bar': 'http://bar.foo.com' }]}}
     } 
 
     const newState = links(initialState, action)
