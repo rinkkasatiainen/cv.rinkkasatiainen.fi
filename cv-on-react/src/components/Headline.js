@@ -1,15 +1,27 @@
 import React from 'react';
 
-class Header extends React.Component {
+import { renderComponentOncePropsIsDefined } from '../CV'
 
+class Headline extends React.Component {
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.props.me) {
+      return false;
+    }
+    return true;
+  }
+
+  getContent = () => ( 
+    <h3 >{ this.props.me['in-short'].headline }</h3>
+  )
 
   render() {
     return(
-      <header className="c-header">
-        <h1>{this.props.name}</h1>
-      </header>
+      <section className="">
+        { renderComponentOncePropsIsDefined.call(this, 'me', this.getContent ) }
+      </section>
     ) ;
   }
 }
 
-export default Header;
+export default Headline;

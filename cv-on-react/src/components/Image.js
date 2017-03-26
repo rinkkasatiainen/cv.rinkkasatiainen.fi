@@ -1,14 +1,8 @@
 import React from 'react';
 
-import loading from '../page-loader.gif'
 import { renderComponentOncePropsIsDefined } from '../CV'
 
 class AvatarImage extends React.Component {
-
-  constructor(){
-    super()
-    renderComponentOncePropsIsDefined.bind(this)
-  }
 
   shouldComponentUpdate(nextProps, nextState) {
     if (this.props.me) {
