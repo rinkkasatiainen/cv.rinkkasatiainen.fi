@@ -16,26 +16,19 @@ describe('Sagas', () => {
     const action = {type:'ON_INITIALIZE'}
     const response = {response:{me: 'responses'}}
 
-    let gen = null
-    beforeEach( () => {
-      gen = fetchData( action )
-    })
-
-    afterEach( () => {
-      while( !gen.next().done ){
-      }
-      gen = null
-    })
-
     it('make a fetch request for data', () => {
+      const gen = fetchData( action )
       const effect = gen.next( response ).value
       
       const expected = call ( Fetch.doCall, 'http://rinkkasatiainen.fi/cv.json' )
+
       expect( effect ).to.be.eql( expected );
     });
 
     it('should dispatch data to store', () => {
+      const gen = fetchData( action )
       gen.next()
+
       const effect = gen.next(response).value; // previous call returns response
       const newAction = effect.PUT.action
 
@@ -44,6 +37,7 @@ describe('Sagas', () => {
     });
 
     it('should have 2 yields', () => {
+      const gen = fetchData( action )
       gen.next();
       gen.next();
       const result = gen.next( {} );
@@ -51,6 +45,7 @@ describe('Sagas', () => {
     })
 
     it('should fail gracefully if cannot fetch data ', () => {
+      const gen = fetchData( action )
       const error = {'reason': 'Network error'}
       gen.next()
       // For some reson, what next() above returned is passed to the next next() method
