@@ -4,6 +4,7 @@ import {expect} from 'chai'
 import {shallow, mount} from 'enzyme'
 
 import HeadingImage from '../../src/components/Image.js'
+import Fetching from '../../src/components/Fetching.js'
 
 import { renderComponentOncePropsIsDefined } from '../../src/CV'
 
@@ -14,7 +15,7 @@ describe('Image', () => {
 
     const wrapper = shallow(<HeadingImage {...props} />)
 
-    expect(wrapper.find('.fetching') ).to.have.length(1) 
+    expect(wrapper.find(Fetching) ).to.have.length(1) 
   })
 
   it('should show fetching before data is present in props', () => {

@@ -13,8 +13,8 @@ import Headline from './components/Headline';
 import ContactDetails from './components/ContactDetails';
 import Education from './components/Education';
 
+import Fetching from './components/Fetching'
 import loading from './page-loader.gif'
-
 
 function mapStateToProps(state) {
   return {
@@ -27,13 +27,11 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(actionCreators, dispatch);
 }
 
-const fetching = ( <div className="fetching"><img src={loading} loop="infinite"/><br /><p>Fetching data</p></div> )
-
 export function renderComponentOncePropsIsDefined( propsName, callback ){
     if( this.props[propsName] ){
       return callback()
     }
-    return fetching
+    return React.cloneElement(<Fetching />)
   }
 
 class CV extends Component {
