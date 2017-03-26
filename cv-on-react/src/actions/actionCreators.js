@@ -4,3 +4,4 @@ export function onInitialize() {
     type: 'ON_INITIALIZE',
   }
 }
+

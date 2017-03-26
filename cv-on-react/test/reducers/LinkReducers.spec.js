@@ -31,5 +31,4 @@ describe('LinksReducer', () => {
 
     expect(newState).to.be.eql( newLinksToBeDownloaded )
   })
-
 });

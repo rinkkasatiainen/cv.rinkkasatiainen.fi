@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-import Header from './components/Header';
-
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as actionCreators from './actions/actionCreators';
 
+import logo from './logo.svg';
+import './App.css';
+
+import Header from './components/Header';
+import HeaderImage from './components/Image';
+import Headline from './components/Headline';
+import ContactDetails from './components/ContactDetails';
+import Education from './components/Education';
+
+import loading from './page-loader.gif'
+
 function mapStateToProps(state) {
   return {
+    me: state.me,
     name: state.name,
   }
 }
@@ -23,6 +30,8 @@ function mapDispatchToProps(dispatch) {
 
 class CV extends Component {
 
+  fetching = ( <div ><img src={loading} loop="infinite"/><br /><p>Fetching data</p></div> )
+
   componentWillMount(){
     const {onInitialize} = {...this.props}
 
@@ -30,9 +39,14 @@ class CV extends Component {
   }
 
   render() {
+    const props = {...this.props, fetching: this.fetching}
     return (
-      <div className="App">
-        <Header {...this.props} />
+      <div className="cv">
+    <Header {...props}/>
+    <Headline {...props}/>
+    <HeaderImage {...props}/>
+    <ContactDetails {...props}/>
+    <Education  {...props}/>
       </div>
     );
   }

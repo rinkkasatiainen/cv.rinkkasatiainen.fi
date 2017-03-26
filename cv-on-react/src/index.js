@@ -7,7 +7,8 @@ import { Provider } from 'react-redux';
 import store, { action } from './store';
 
 const app = <Provider store={store} action={action}>
-  <CV />
+  <CV >
+  </CV>
   </Provider>
 
 ReactDOM.render(
