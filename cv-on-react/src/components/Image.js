@@ -5,6 +5,13 @@ import loading from '../page-loader.gif'
 class AvatarImage extends React.Component {
 
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.props.me) {
+      return false;
+    }
+    return true;
+  }
+
   getContent = () => ( 
     <div className="flex">
       <img src={this.props.me['in-short'].image.src} alt={this.props.me['in-short'].image.alt}/>
