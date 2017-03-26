@@ -1,9 +1,14 @@
 import React from 'react';
 
 import loading from '../page-loader.gif'
+import { renderComponentOncePropsIsDefined } from '../CV'
 
 class AvatarImage extends React.Component {
 
+  constructor(){
+    super()
+    renderComponentOncePropsIsDefined.bind(this)
+  }
 
   shouldComponentUpdate(nextProps, nextState) {
     if (this.props.me) {
@@ -20,11 +25,11 @@ class AvatarImage extends React.Component {
   )
 
   render() {
-    const { renderComponentOncePropsIsDefined, me, fetching } = this.props
+    const { _renderComponentOncePropsIsDefined, me, fetching } = this.props
     
     return(
       <section className="">
-        { renderComponentOncePropsIsDefined('me', this.getContent ) }
+        { renderComponentOncePropsIsDefined.call(this, 'me', this.getContent ) }
         
       </section>
     ) 

@@ -15,6 +15,7 @@ import Education from './components/Education';
 
 import loading from './page-loader.gif'
 
+
 function mapStateToProps(state) {
   return {
     me: state.me,
@@ -26,19 +27,25 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(actionCreators, dispatch);
 }
 
+const fetching = ( <div className="fetching"><img src={loading} loop="infinite"/><br /><p>Fetching data</p></div> )
 
+export function renderComponentOncePropsIsDefined( propsName, callback ){
+    if( this.props[propsName] ){
+      return callback()
+    }
+    return fetching
+  }
 
 class CV extends Component {
 
   constructor(){
     super()
 
-    this.renderComponentOncePropsIsDefined = this.renderComponentOncePropsIsDefined.bind( this )
+    //    this.renderComponentOncePropsIsDefined = this.renderComponentOncePropsIsDefined.bind( this )
   }
 
-  fetching = ( <div ><img src={loading} loop="infinite"/><br /><p>Fetching data</p></div> )
 
-  renderComponentOncePropsIsDefined( propsName, callback ){
+  _renderComponentOncePropsIsDefined( propsName, callback ){
     if( this.props[propsName] ){
       return callback()
     }

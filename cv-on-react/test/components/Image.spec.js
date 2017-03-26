@@ -5,21 +5,18 @@ import {shallow, mount} from 'enzyme'
 
 import HeadingImage from '../../src/components/Image.js'
 
+import { renderComponentOncePropsIsDefined } from '../../src/CV'
 
 describe('Image', () => {
-
-  let called = false
-  const renderComponentOncePropsIsDefined = () => {
-    called = true
-  }
 
   it('should show fetching before data is present in props', () => {
     const props={renderComponentOncePropsIsDefined, fetching: (<div className='fetching'>fetching</div>)}
 
     const wrapper = shallow(<HeadingImage {...props} />)
 
-    expect( called ).to.be.eq(true) 
+    expect(wrapper.find('.fetching') ).to.have.length(1) 
   })
+
   it('should show fetching before data is present in props', () => {
     const props={renderComponentOncePropsIsDefined, me: {'in-short': { image : { src: 'src', alt: 'alt' }, quote: 'quote' }}} 
 
