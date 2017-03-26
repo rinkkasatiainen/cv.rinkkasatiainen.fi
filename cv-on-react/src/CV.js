@@ -30,7 +30,20 @@ function mapDispatchToProps(dispatch) {
 
 class CV extends Component {
 
+  constructor(){
+    super()
+
+    this.renderComponentOncePropsIsDefined = this.renderComponentOncePropsIsDefined.bind( this )
+  }
+
   fetching = ( <div ><img src={loading} loop="infinite"/><br /><p>Fetching data</p></div> )
+
+  renderComponentOncePropsIsDefined( propsName, callback ){
+    if( this.props[propsName] ){
+      return callback()
+    }
+    return this.fetching
+  }
 
   componentWillMount(){
     const {onInitialize} = {...this.props}
@@ -39,7 +52,7 @@ class CV extends Component {
   }
 
   render() {
-    const props = {...this.props, fetching: this.fetching}
+    const props = {...this.props, fetching: this.fetching, renderComponentOncePropsIsDefined: this.renderComponentOncePropsIsDefined }
     return (
       <div className="cv">
     <Header {...props}/>

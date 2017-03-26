@@ -20,11 +20,12 @@ class AvatarImage extends React.Component {
   )
 
   render() {
-    const { me, fetching } = this.props
+    const { renderComponentOncePropsIsDefined, me, fetching } = this.props
     
     return(
       <section className="">
-        { me ? this.getContent() : fetching }
+        { renderComponentOncePropsIsDefined('me', this.getContent ) }
+        
       </section>
     ) 
   }
