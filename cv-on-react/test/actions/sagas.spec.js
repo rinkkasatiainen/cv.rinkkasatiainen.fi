@@ -33,7 +33,7 @@ describe('Sagas', () => {
       const newAction = effect.PUT.action
 
       expect(newAction.type).to.be.eql( 'BASIC_DATA_RETRIEVED' )
-      expect(newAction.payload).to.be.eql( response.response )
+      expect(newAction.me).to.be.eql( response.response.me )
     });
 
     it('should have 2 yields', () => {

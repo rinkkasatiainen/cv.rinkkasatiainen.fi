@@ -3,8 +3,7 @@ import { combineReducers } from 'redux';
 function name(state = "", action) {
   switch( action.type ){
     case 'BASIC_DATA_RETRIEVED':
-      console.log( action.payload )
-      return action.payload.me['in-short'].name
+      return action.me['in-short'].name
     default:
       return state
   }
@@ -13,7 +12,7 @@ function name(state = "", action) {
 function me(state={}, action){
   switch( action.type ){
     case 'BASIC_DATA_RETRIEVED':
-      return action.payload.me
+      return action.me
     default:
       return state
   }
@@ -22,7 +21,7 @@ function me(state={}, action){
 export function links(state=[], action){
   switch( action.type ){
     case 'BASIC_DATA_RETRIEVED':
-      return [ ...action.payload.me.links ]
+      return [ ...action.me.links ]
     default:
       return state
   }
