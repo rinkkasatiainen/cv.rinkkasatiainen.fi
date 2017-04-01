@@ -76,13 +76,34 @@ describe('Sagas', () => {
       const gen = sagas.fetchLinks( action )
 
       const effect  = gen.next().value
-      console.log ('effect', effect ) //.PUT.action )
       const newAction = effect.PUT.action
       expect( newAction.type ).to.be.eql('DOWNLOADING')
       expect( newAction.payload.type ).to.be.eql('foo')
-
     })
     
+    it('should call each link, once when 1 link', () => {
+      const gen = sagas.fetchLinks( action )
+
+      gen.next()
+      gen.next()
+
+      expect( gen.next().done).to.be.eql(true)
+    })
+
+    it('should call each link, once when 2 link', () => {
+      const twolinks = {...action, 'me':{links:[{foo:'bar'},{bar:'baz'}]}}
+      console.log (twolinks)
+      const gen = sagas.fetchLinks( twolinks )
+
+      for( const time in twolinks.me.links ){
+        gen.next()
+        let effect = gen.next()
+        expect( effect.done ).to.be.eql(false)
+      }
+
+      //done
+      expect( gen.next().done).to.be.eql(true)
+    })
 
   });
 });
