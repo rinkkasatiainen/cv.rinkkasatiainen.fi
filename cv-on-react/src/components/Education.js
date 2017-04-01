@@ -1,7 +1,17 @@
 import React from 'react';
 
-class Header extends React.Component {
+class Skills extends React.Component {
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.props.me) {
+      return false;
+    }
+    return true;
+  }
+
+  getContent = () => ( 
+    <h3 >{ this.props.me['in-short'].headline }</h3>
+  )
 
   render() {
     return(
@@ -12,5 +22,5 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+export default Skills;
 
