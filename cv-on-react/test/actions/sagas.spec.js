@@ -68,11 +68,20 @@ describe('Sagas', () => {
 
       const newAction = effect.PUT.action
       
-      console.log('newaction', newAction )
       expect( newAction.type ).to.be.eql( 'LINK_DOWNLOADED' )
-      expect( newAction.payload.foo ).to.be.eql( responseJson.response )
+      expect( newAction.payload['foo'] ).to.be.eql( responseJson.response )
     })
 
+    it('should send action that type is about to be downloaded', () => {
+      const gen = sagas.fetchLinks( action )
+
+      const effect  = gen.next().value
+      console.log ('effect', effect ) //.PUT.action )
+      const newAction = effect.PUT.action
+      expect( newAction.type ).to.be.eql('DOWNLOADING')
+      expect( newAction.payload.type ).to.be.eql('foo')
+
+    })
     
 
   });

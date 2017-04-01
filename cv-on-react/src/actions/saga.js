@@ -28,6 +28,7 @@ export function* fetchLinks(action){
 
   for(const link of action.me.links ){
     for (const type in link ){
+      yield put( {type: 'DOWNLOADING', payload: {type: type} })
       yield fetchOneLink( type, link[type] )
     }
   }
