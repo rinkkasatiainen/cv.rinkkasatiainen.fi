@@ -33,5 +33,17 @@ class ContactDetails extends React.Component {
   }
 }
 
+ContactDetails.propTypes = {
+  me: React.PropTypes.shape({
+    'contact-info': React.PropTypes.shape({
+      email: React.PropTypes.string.isRequired,
+      mobile: React.PropTypes.string.isRequired,
+      github: React.PropTypes.string.isRequired,
+      linkedIn: React.PropTypes.string.isRequired,
+      twitter: React.PropTypes.string.isRequired,
+    }),
+  }).isRequired,
+}
+
 export default ContactDetails;
 
